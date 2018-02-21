@@ -1,0 +1,97 @@
+.clock-calendar {
+	margin: 50px auto;
+	padding: 10px;
+    background-color: #000;
+    color: #fff;
+    width: 400px;
+    height: 80px;
+    font-family: Arial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px dotted #7103BB;
+    outline: 5px solid #000;
+    transition: 1s all;
+
+}
+
+ @keyframes changeColor {
+ 	0% {
+		border-color: #7103BB;
+	}
+	15% {
+		border-color: #FF00AE;
+	}
+	57% {
+		border-color: #FF0037;
+	}
+	79% {
+		border-color: #FF00AE;
+	}
+	100%{
+		border-color: #7103BB;
+	}
+}
+
+ @keyframes changeText {
+ 	0% {
+		text-shadow: 0 0 0.5em #7103BB,0 0 0.5em #7103BB,0 0 0.5em #7103BB;
+	}
+	15% {
+		text-shadow: 0 0 0.5em #FF00AE,0 0 0.5em #FF00AE,0 0 0.5em #FF00AE;
+	}
+
+	57% {
+		text-shadow: 0 0 0.5em #FF0037,0 0 0.5em #FF0037,0 0 0.5em #FF0037;
+	}
+	79% {
+		text-shadow: 0 0 0.5em #FF00AE,0 0 0.5em #FF00AE,0 0 0.5em #FF00AE;
+	}
+	100%{
+		text-shadow: 0 0 0.5em #7103BB,0 0 0.5em #7103BB,0 0 0.5em #7103BB;
+	}
+}
+.clock-calendar:hover {
+	/* border-color: #FF00AE;
+	transition: 1s all; */
+	animation: changeColor 3s ease-in-out infinite;
+	animation-fill-mode: forwards;
+}
+
+.clock-calendar > div {
+    text-align: center;
+}
+
+.calendar {
+	text-shadow: 0 0 0.5em #8E00FF, 0 0 0.5em #8E00FF, 0 0 0.5em #8E00FF;
+	width: 100%;
+    min-height: 20px;
+    font-size: 4em;
+    transition: 1s all;
+}
+.clock {
+	text-shadow: 0 0 0.5em #8E00FF, 0 0 0.5em #8E00FF, 0 0 0.5em #8E00FF;
+    font-size: 4em;
+    transition: 1s all;
+}
+
+.clock-calendar:hover>.calendar {
+	/*  text-shadow: 0 0 0.5em #E400FF, 0 0 0.5em #E400FF, 0 0 0.5em #E400FF;
+		transition: 1s all; */
+	animation: changeText 3s ease-in-out infinite;
+	animation-fill-mode: forwards;
+}
+.clock-calendar:hover>.clock {
+	/*  text-shadow: 0 0 0.5em #E400FF, 0 0 0.5em #E400FF, 0 0 0.5em #E400FF;
+		transition: 1s all; */
+	animation: changeText 3s ease-in-out infinite;
+	animation-fill-mode: forwards;
+}
+
+.hidden {
+	display: none;
+}
+
+.active {
+	display: block;
+}
