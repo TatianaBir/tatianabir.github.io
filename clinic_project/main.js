@@ -149,6 +149,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_clients_client_add_form_client_add_form_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/clients/client-add-form/client-add-form.component */ "./src/app/components/clients/client-add-form/client-add-form.component.ts");
 /* harmony import */ var _components_clients_client_edit_form_client_edit_form_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/clients/client-edit-form/client-edit-form.component */ "./src/app/components/clients/client-edit-form/client-edit-form.component.ts");
 /* harmony import */ var _components_employees_employee_add_form_employee_add_form_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/employees/employee-add-form/employee-add-form.component */ "./src/app/components/employees/employee-add-form/employee-add-form.component.ts");
+/* harmony import */ var _components_work_work_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/work/work.component */ "./src/app/components/work/work.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -177,6 +178,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+ // TODO: temporary page, delete after content creation
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -194,7 +196,8 @@ var AppModule = /** @class */ (function () {
                 _components_clients_clients_component__WEBPACK_IMPORTED_MODULE_17__["ClientsComponent"],
                 _components_clients_client_add_form_client_add_form_component__WEBPACK_IMPORTED_MODULE_19__["ClientAddFormComponent"],
                 _components_clients_client_edit_form_client_edit_form_component__WEBPACK_IMPORTED_MODULE_20__["ClientEditFormComponent"],
-                _components_employees_employee_add_form_employee_add_form_component__WEBPACK_IMPORTED_MODULE_21__["EmployeeAddFormComponent"]
+                _components_employees_employee_add_form_employee_add_form_component__WEBPACK_IMPORTED_MODULE_21__["EmployeeAddFormComponent"],
+                _components_work_work_component__WEBPACK_IMPORTED_MODULE_22__["WorkComponent"] // TODO: temporary page, delete after content creation
             ],
             imports: [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormsModule"],
@@ -226,7 +229,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-12 col-md-6 col-lg-6 form-area\">\n  <form #clientForm=\"ngForm\" (ngSubmit)=\"addClient(clientForm)\">\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"lastname\">Фамилия:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"lastname\"\n             required\n             [(ngModel)]=\"client.lastname\" name=\"lastname\" #lastname=\"ngModel\">\n\n      <div *ngIf=\"lastname.invalid && (lastname.dirty || lastname.touched)\" class=\"error-message\">\n        <div *ngIf=\"lastname.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!lastname.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"name\">Имя:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"name\"\n             required\n             [(ngModel)]=\"client.name\" name=\"name\" #name=\"ngModel\">\n      <div *ngIf=\"name.invalid && (name.dirty || name.touched)\" class=\"error-message\">\n      <div *ngIf=\"name.errors.required\">Заполните это поле</div>\n    </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!name.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"patronymic\">Отчество:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"patronymic\"\n             required\n             [(ngModel)]=\"client.patronymic\" name=\"patronymic\" #patronymic=\"ngModel\">\n      <div *ngIf=\"patronymic.invalid && (patronymic.dirty || patronymic.touched)\" class=\"error-message\">\n        <div *ngIf=\"patronymic.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!patronymic.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group phone\">\n      <label class=\"col-4\" for=\"phone\">Телефон:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"phone\"\n             required minlength=\"9\" maxlength=\"9\"\n             [(ngModel)]=\"client.phone\" name=\"phone\" #phone=\"ngModel\">\n      <div *ngIf=\"phone.invalid && (phone.dirty || phone.touched)\" class=\"error-message\">\n        <div *ngIf=\"phone.errors.required\">Заполните это поле</div>\n\n        <div *ngIf=\"phone.errors.minlength\">Телефон должен состоять из 9 знаков</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!phone.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"doctor\">Лечащий врач:</label>\n      <select class=\"form-control col-7\" id=\"doctor\" [(ngModel)]=\"client.doctor\" name=\"doctor\">\n        <option *ngFor=\"let employee of employees\" [value]=\"employee.lastname\">\n          {{employee.lastname}}\n        </option>\n      </select>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"discount\">Дисконт:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"discount\"\n             [(ngModel)]=\"client.discount\" name=\"discount\">\n    </div>\n\n    <div class=\"form-group textarea\">\n      <label class=\"col-4\" for=\"comment\">Комментарий:</label>\n      <textarea rows=\"6\" type=\"text\" class=\"form-control col-7\" id=\"comment\"\n                [(ngModel)]=\"client.comment\" name=\"comment\"></textarea>\n    </div>\n\n    <div class=\"button-area\">\n      <button type=\"submit\" class=\"btn btn-success green\">Ок</button>\n      <button type=\"button\" class=\"btn btn-primary blue\" (click)=\"changeBoolean(); clientForm.reset();\">Назад</button>\n    </div>\n\n  </form>\n</div>\n"
+module.exports = "<div class=\"col-sm-12 col-md-6 col-lg-6 form-area\">\n  <form #clientForm=\"ngForm\" (ngSubmit)=\"addClient(clientForm)\">\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"lastname\">Фамилия:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"lastname\"\n             required\n             [(ngModel)]=\"client.lastname\" name=\"lastname\" #lastname=\"ngModel\">\n\n      <div *ngIf=\"lastname.invalid && (lastname.dirty || lastname.touched)\" class=\"error-message\">\n        <div *ngIf=\"lastname.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!lastname.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"name\">Имя:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"name\"\n             required\n             [(ngModel)]=\"client.name\" name=\"name\" #name=\"ngModel\">\n      <div *ngIf=\"name.invalid && (name.dirty || name.touched)\" class=\"error-message\">\n      <div *ngIf=\"name.errors.required\">Заполните это поле</div>\n    </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!name.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"patronymic\">Отчество:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"patronymic\"\n             required\n             [(ngModel)]=\"client.patronymic\" name=\"patronymic\" #patronymic=\"ngModel\">\n      <div *ngIf=\"patronymic.invalid && (patronymic.dirty || patronymic.touched)\" class=\"error-message\">\n        <div *ngIf=\"patronymic.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!patronymic.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group phone\">\n      <label class=\"col-4\" for=\"phone\">Телефон:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"phone\"\n             required minlength=\"9\" maxlength=\"9\"\n             [(ngModel)]=\"client.phone\" name=\"phone\" #phone=\"ngModel\">\n      <div *ngIf=\"phone.invalid && (phone.dirty || phone.touched)\" class=\"error-message\">\n        <div *ngIf=\"phone.errors.required\">Заполните это поле</div>\n\n        <div *ngIf=\"phone.errors.minlength\">Телефон должен состоять из 9 знаков</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!phone.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"doctor\">Лечащий врач:</label>\n      <select class=\"form-control col-7\" id=\"doctor\" [(ngModel)]=\"client.doctor\" name=\"doctor\">\n        <option *ngFor=\"let employee of employees\" [value]=\"employee.lastname\">\n          {{employee.lastname}}\n        </option>\n      </select>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"discount\">Дисконт:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"discount\"\n             [(ngModel)]=\"client.discount\" name=\"discount\">\n    </div>\n\n    <div class=\"form-group textarea\">\n      <label class=\"col-4\" for=\"comment\">Комментарий:</label>\n      <textarea rows=\"6\" type=\"text\" class=\"form-control col-7\" id=\"comment\"\n                [(ngModel)]=\"client.comment\" name=\"comment\"></textarea>\n    </div>\n\n    <div class=\"button-area\">\n      <button type=\"submit\" class=\"btn btn-success green\">Ок</button>\n      <button type=\"button\" class=\"btn btn-primary blue\" (click)=\"close(); clientForm.reset();\">Назад</button>\n    </div>\n\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -276,6 +279,7 @@ var ClientAddFormComponent = /** @class */ (function () {
         this.clientService = clientService;
         this.employeeService = employeeService;
         this.listState = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.closeState = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     ClientAddFormComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -283,11 +287,13 @@ var ClientAddFormComponent = /** @class */ (function () {
         this.employeeService.getEmployees()
             .subscribe(function (res) { return _this.employees = res; }, function (error) { return _this.router.navigate(['/error']); });
     };
-    ClientAddFormComponent.prototype.changeBoolean = function () {
-        this.listState.emit(true);
+    ClientAddFormComponent.prototype.changeBoolean = function (client) {
+        this.listState.emit(client);
+    };
+    ClientAddFormComponent.prototype.close = function () {
+        this.closeState.emit(true);
     };
     ClientAddFormComponent.prototype.addClient = function (form) {
-        var _this = this;
         if (form.invalid) {
             this.errorMessage = true;
             return;
@@ -298,21 +304,27 @@ var ClientAddFormComponent = /** @class */ (function () {
         newClient.name = value.name;
         newClient.patronymic = value.patronymic;
         newClient.phone = value.phone;
-        /* newClient.comment = value.comment;
-         newClient.discount = value.discount;
-         newClient.doctor = value.doctor;*/
-        // this.changeBoolean(); // TODO: remove after DB connecting
-        this.clientService.addClient(newClient)
-            .subscribe(function (res) {
-            _this.changeBoolean();
-        }, 
-        // (error) => this.router.navigate(['/error'])
-        function (error) { return console.log(error); });
+        newClient.comment = value.comment || null;
+        newClient.discount = value.discount || null;
+        newClient.doctor = value.doctor || null;
+        this.changeBoolean(newClient); // TODO: remove after DB connecting
+        /*this.clientService.addClient(newClient)
+          .subscribe(
+            (res) => {
+    
+              this.changeBoolean();
+            },
+            (error) => this.router.navigate(['/error'])
+          );*/
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", Object)
     ], ClientAddFormComponent.prototype, "listState", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", Object)
+    ], ClientAddFormComponent.prototype, "closeState", void 0);
     ClientAddFormComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-client-add-form',
@@ -335,7 +347,7 @@ var ClientAddFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-12 col-md-6 col-lg-6 form-area\">\n  <form #clientForm=\"ngForm\" (ngSubmit)=\"editClient(clientForm)\">\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"lastname\">Фамилия:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"lastname\"\n             required\n             [(ngModel)]=\"client.lastname\" name=\"lastname\" #lastname=\"ngModel\">\n      <div *ngIf=\"lastname.invalid && (lastname.dirty || lastname.touched)\"\n           class=\"error-message\">\n\n        <div *ngIf=\"lastname.errors.required\">\n          Заполните это поле\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"name\">Имя:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"name\"\n             required minlength=\"4\"\n             [(ngModel)]=\"client.name\" name=\"name\" #name=\"ngModel\">\n      <div *ngIf=\"name.invalid && (name.dirty || name.touched)\"\n           class=\"error-message\">\n\n        <div *ngIf=\"name.errors.required\">\n          Заполните это поле\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"patronymic\">Отчество:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"patronymic\"\n             required\n             [(ngModel)]=\"client.patronymic\" name=\"patronymic\" #patronymic=\"ngModel\">\n      <div *ngIf=\"patronymic.invalid && (patronymic.dirty || patronymic.touched)\"\n           class=\"error-message\">\n\n        <div *ngIf=\"patronymic.errors.required\">\n          Заполните это поле\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"form-group phone\">\n      <label class=\"col-4\" for=\"phone\">Телефон:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"phone\"\n             required minlength=\"9\" maxlength=\"9\"\n             [(ngModel)]=\"client.phone\" name=\"phone\" #phone=\"ngModel\">\n      <div *ngIf=\"phone.invalid && (phone.dirty || phone.touched)\"\n           class=\"error-message\">\n\n        <div *ngIf=\"phone.errors.required\">\n          Заполните это поле\n        </div>\n\n        <div *ngIf=\"phone.errors.minlength\">\n          Телефон должен состоять из 9 знаков\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"doctor\">Лечащий врач:</label>\n      <select class=\"form-control col-7\" id=\"doctor\" [(ngModel)]=\"client.doctor\" name=\"doctor\">\n        <option *ngFor=\"let employee of employees\" [value]=\"employee.lastname\">\n          {{employee.lastname}}\n        </option>\n      </select>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"discount\">Дисконт:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"discount\"\n             [(ngModel)]=\"client.discount\" name=\"discount\">\n    </div>\n\n    <div class=\"form-group textarea\">\n      <label class=\"col-4\" for=\"comment\">Комментарий:</label>\n      <textarea type=\"text\" class=\"form-control col-7\" id=\"comment\"\n                [(ngModel)]=\"client.comment\" name=\"comment\" rows=\"6\"></textarea>\n    </div>\n\n    <div class=\"button-area\">\n      <button type=\"submit\" class=\"btn btn-success green\">Редактировать</button>\n      <button type=\"button\" class=\"btn btn-primary blue\" (click)=\"changeBoolean();\">Назад</button>\n    </div>\n\n  </form>\n</div>\n"
+module.exports = "<div class=\"col-sm-12 col-md-6 col-lg-6 form-area\">\n  <form #clientForm=\"ngForm\" (ngSubmit)=\"editClient(clientForm)\">\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"lastname\">Фамилия:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"lastname\"\n             required\n             [(ngModel)]=\"client.lastname\" name=\"lastname\" #lastname=\"ngModel\">\n      <div *ngIf=\"lastname.invalid && (lastname.dirty || lastname.touched)\"\n           class=\"error-message\">\n\n        <div *ngIf=\"lastname.errors.required\">\n          Заполните это поле\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"name\">Имя:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"name\"\n             required\n             [(ngModel)]=\"client.name\" name=\"name\" #name=\"ngModel\">\n      <div *ngIf=\"name.invalid && (name.dirty || name.touched)\"\n           class=\"error-message\">\n\n        <div *ngIf=\"name.errors.required\">\n          Заполните это поле\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"patronymic\">Отчество:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"patronymic\"\n             required\n             [(ngModel)]=\"client.patronymic\" name=\"patronymic\" #patronymic=\"ngModel\">\n      <div *ngIf=\"patronymic.invalid && (patronymic.dirty || patronymic.touched)\"\n           class=\"error-message\">\n\n        <div *ngIf=\"patronymic.errors.required\">\n          Заполните это поле\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"form-group phone\">\n      <label class=\"col-4\" for=\"phone\">Телефон:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"phone\"\n             required minlength=\"9\" maxlength=\"9\"\n             [(ngModel)]=\"client.phone\" name=\"phone\" #phone=\"ngModel\">\n      <div *ngIf=\"phone.invalid && (phone.dirty || phone.touched)\"\n           class=\"error-message\">\n\n        <div *ngIf=\"phone.errors.required\">\n          Заполните это поле\n        </div>\n\n        <div *ngIf=\"phone.errors.minlength\">\n          Телефон должен состоять из 9 знаков\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"doctor\">Лечащий врач:</label>\n      <select class=\"form-control col-7\" id=\"doctor\" [(ngModel)]=\"client.doctor\" name=\"doctor\">\n        <option *ngFor=\"let employee of employees\" [value]=\"employee.lastname\">\n          {{employee.lastname}}\n        </option>\n      </select>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"discount\">Дисконт:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"discount\"\n             [(ngModel)]=\"client.discount\" name=\"discount\">\n    </div>\n\n    <div class=\"form-group textarea\">\n      <label class=\"col-4\" for=\"comment\">Комментарий:</label>\n      <textarea type=\"text\" class=\"form-control col-7\" id=\"comment\"\n                [(ngModel)]=\"client.comment\" name=\"comment\" rows=\"6\"></textarea>\n    </div>\n\n    <div class=\"button-area\">\n      <button type=\"submit\" class=\"btn btn-success green\">Редактировать</button>\n      <button type=\"button\" class=\"btn btn-primary blue\" (click)=\"close()\">Назад</button>\n    </div>\n\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -385,18 +397,34 @@ var ClientEditFormComponent = /** @class */ (function () {
         this.clientService = clientService;
         this.employeeService = employeeService;
         this.listState = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.closeState = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     ClientEditFormComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.employeeService.getEmployees()
             .subscribe(function (res) { return _this.employees = res; }, function (error) { return _this.router.navigate(['/error']); });
     };
-    ClientEditFormComponent.prototype.changeBoolean = function () {
-        this.listState.emit(true);
+    ClientEditFormComponent.prototype.changeBoolean = function (client) {
+        this.listState.emit(client);
+    };
+    ClientEditFormComponent.prototype.close = function () {
+        this.closeState.emit(true);
     };
     ClientEditFormComponent.prototype.editClient = function (form) {
-        this.changeBoolean(); // TODO: remove after DB connecting
+        if (form.invalid) {
+            this.errorMessage = true;
+            return;
+        }
         var value = form.value;
+        var newClient = new _models_client__WEBPACK_IMPORTED_MODULE_4__["Client"];
+        newClient.lastname = value.lastname;
+        newClient.name = value.name;
+        newClient.patronymic = value.patronymic;
+        newClient.phone = value.phone;
+        newClient.comment = value.comment || null;
+        newClient.discount = value.discount || null;
+        newClient.doctor = value.doctor || null;
+        this.changeBoolean(newClient); // TODO: remove after DB connecting
         /*this.clientService.editClient(this.client)
           .subscribe(
             (res) => this.changeBoolean(),
@@ -411,6 +439,10 @@ var ClientEditFormComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", Object)
     ], ClientEditFormComponent.prototype, "listState", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", Object)
+    ], ClientEditFormComponent.prototype, "closeState", void 0);
     ClientEditFormComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-client-edit-form',
@@ -433,7 +465,7 @@ var ClientEditFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content col-12\">\n  <div class=\"employees-list\" *ngIf=\"listState\">\n    <h3 class=\"col-12\">Пациенты TalMedical</h3>\n\n    <div class=\"table col-10\">\n      <div class=\"table-head\">\n        <div class=\"table-cell col-3\"><p>Ф.И.О</p></div>\n        <div class=\"table-cell col-3\"><p>Телефон</p></div>\n        <div class=\"table-cell col-3\"><p>Лечащий врач</p></div>\n        <div class=\"table-cell col-3\"><p>Дисконт</p></div>\n      </div>\n      <div class=\"table-row\" *ngFor=\"let client of clients\">\n        <div class=\"table-cell col-3 include-hover\">\n          <p>{{ client.lastname }} {{ client.name }} {{client.patronymic}}</p>\n          <div class=\"on-hover\">\n            <i class=\"fa fa-user-edit\" (click)=\"select(client); editState=true; listState=false;\"></i>\n            <i class=\"fa fa-trash\"></i>\n          </div>\n        </div>\n        <div class=\"table-cell col-3 phone\" (click)=\"createCommentsArray(client)\">\n          <p>+380 {{ client.phone }}</p>\n          <span *ngIf=\"client.comment\"></span>\n          <p class=\"col-10 show-comment\" *ngIf=\"client.comment && comments.includes(client)\">{{ client.comment }}</p>\n        </div>\n        <div class=\"table-cell col-3\"><p>{{ client.doctor }}</p></div>\n        <div class=\"table-cell col-3\"><p>{{ client.discount }}</p></div>\n      </div>\n    </div>\n    <div class=\"col-sm-4 col-md-3 offset-8 button-area\">\n      <button class=\"btn btn-success green\" (click)=\"listState = false; addState = true;\">Добавить</button>\n      <button class=\"btn btn-primary\" (click)=\"returnToStart()\">Меню</button>\n    </div>\n  </div>\n\n  <app-client-edit-form *ngIf=\"editState\" [client]=\"selectedClient\" (listState)=\"listState = $event; editState = !editState\"></app-client-edit-form>\n  <app-client-add-form *ngIf=\"addState\" (listState)=\"listState = $event; addState = !addState\"></app-client-add-form>\n  <!--<div class=\"add-new col-6\" *ngIf=\"!state\">\n    <form>\n      <label class=\"col-4\" for=\"lastname\">Фамилия:</label>\n      <input class=\"col-7 offset-1\" id=\"lastname\" type=\"text\" placeholder=\"Фамилия\" name=\"lastname\" [(ngModel)]=\"client.lastname\">\n\n      <label class=\"col-4\" for=\"name\">Имя:</label>\n      <input class=\"col-7 offset-1\" id=\"name\" type=\"text\" placeholder=\"Имя\" name=\"name\" [(ngModel)]=\"client.name\">\n\n      <label class=\"col-4\" for=\"patronymic\">Отчество:</label>\n      <input class=\"col-7 offset-1\" id=\"patronymic\" type=\"text\" placeholder=\"Отчество\" name=\"patronymic\" [(ngModel)]=\"client.patronymic\">\n\n      <label class=\"col-4\" for=\"phone\">Телефон:</label>\n      <div class=\"phone col-7 offset-1\">\n        <input class=\"\" id=\"phone\" type=\"text\" name=\"phone\" [(ngModel)]=\"client.phone\" specialCharacters=\"' '\" mask=\"00 000 00 00\">\n        <span></span>\n      </div>\n\n      <label class=\"col-4\" for=\"doctor\">Лечащий врач:</label>\n      <div class=\"select col-7 offset-1\" id=\"doctor\">\n        <select class=\"col-8\" name=\"doctor\" name=\"doctor\" [(ngModel)]=\"client.doctor\">\n          <option *ngFor=\"let employee of employees\" [value]=\"employee.lastname\">{{ employee.lastname }} {{ employee.name }} {{employee.patronymic}}</option>\n        </select>\n      </div>\n\n      <label class=\"col-4\" for=\"discount\">Дисконт:</label>\n      <input class=\"col-7 offset-1\" id=\"discount\" type=\"number\" placeholder=\"Дисконт\" name=\"discount\" [(ngModel)]=\"client.discount\">\n\n      <label class=\"col-4\" for=\"comment\">Комментарий:</label>\n      <textarea class=\"col-7 offset-1\" id=\"comment\" type=\"text\" cols=\"5\" placeholder=\"Комментарий\" name=\"comment\" [(ngModel)]=\"client.comment\"></textarea>\n    </form>\n    <div class=\"button-area-item\">\n      <span class=\"error\" *ngIf=\"error\">{{ message }}</span>\n      <button class=\"btn btn-success add-new-employee\" *ngIf=\"!editState\" (click)=\"addNew()\">Ok</button>\n      <button class=\"btn btn-success add-new-employee\" *ngIf=\"editState\" (click)=\"editClient()\">Редактировать</button>\n      <button class=\"btn btn-primary\" (click)=\"state = true; editState = false;\">Назад</button>\n    </div>\n  </div>-->\n\n<!-- Form for adding -->\n\n  <!--<div class=\"col-sm-12 col-md-6 col-lg-6 add-new\" *ngIf=\"!state\">\n    <form #clientForm=\"ngForm\" (ngSubmit)=\"addNew(clientForm)\">\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"lastname\">Фамилия:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"lastname\"\n               required [pattern]=\"myPat\"\n               [(ngModel)]=\"client.lastname\" name=\"lastname\" #lastname=\"ngModel\">\n        <div *ngIf=\"lastname.invalid && (lastname.dirty || lastname.touched)\"\n             class=\"error-message\">\n\n          <div *ngIf=\"lastname.errors.required\">\n            Name is required.\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"name\">Имя:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"name\"\n               required minlength=\"4\"\n               [(ngModel)]=\"client.name\" name=\"name\" #name=\"ngModel\">\n        <div *ngIf=\"name.invalid && (name.dirty || name.touched)\"\n             class=\"error-message\">\n\n          <div *ngIf=\"name.errors.required\">\n            Name is required.\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"patronymic\">Отчество:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"patronymic\"\n               required\n               [(ngModel)]=\"client.patronymic\" name=\"patronymic\" #patronymic=\"ngModel\">\n        <div *ngIf=\"patronymic.invalid && (patronymic.dirty || patronymic.touched)\"\n             class=\"error-message\">\n\n          <div *ngIf=\"patronymic.errors.required\">\n            Name is required.\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"form-group phone\">\n        <label class=\"col-4\" for=\"phone\">Телефон:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"phone\"\n               required minlength=\"9\" maxlength=\"9\"\n               [(ngModel)]=\"client.phone\" name=\"phone\" #phone=\"ngModel\">\n        <div *ngIf=\"phone.invalid && (phone.dirty || phone.touched)\"\n             class=\"error-message\">\n\n          <div *ngIf=\"phone.errors.required\">\n            Name is required.\n          </div>\n\n          <div *ngIf=\"phone.errors.minlength\">\n            Name must be at least 9 characters long.\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"doctor\">Лечащий врач:</label>\n        <select class=\"form-control col-7\" id=\"doctor\" [(ngModel)]=\"client.doctor\" name=\"doctor\">\n          <option *ngFor=\"let employee of employees\" [value]=\"employee.lastname\">\n            {{employee.lastname}}\n          </option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"discount\">Дисконт:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"discount\"\n               [(ngModel)]=\"client.discount\" name=\"discount\">\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"comment\">Комментарий:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"comment\"\n               [(ngModel)]=\"client.comment\" name=\"comment\">\n      </div>\n\n      <div class=\"button-area\">\n        <button type=\"submit\" class=\"btn btn-success add-new-employee\" [disabled]=\"!clientForm.form.valid\">Submit</button>\n        <button class=\"btn btn-success add-new-employee\" *ngIf=\"editState\" (click)=\"editClient()\">Редактировать</button>\n        <button class=\"btn btn-primary\" (click)=\"state = true; editState = false; clientForm.reset();\">Назад</button>\n      </div>\n\n    </form>\n  </div>-->\n\n  <!-- Form for editing -->\n\n  <!--<div class=\"col-sm-12 col-md-6 col-lg-6 add-new\" *ngIf=\"!state\">\n    <form #clientForm=\"ngForm\" (ngSubmit)=\"addNew(clientForm)\">\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"lastname\">Фамилия:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"lastname\"\n               required [pattern]=\"myPat\"\n               [(ngModel)]=\"client.lastname\" name=\"lastname\" #lastname=\"ngModel\">\n        <div *ngIf=\"lastname.invalid && (lastname.dirty || lastname.touched)\"\n             class=\"error-message\">\n\n          <div *ngIf=\"lastname.errors.required\">\n            Name is required.\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"name\">Имя:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"name\"\n               required minlength=\"4\"\n               [(ngModel)]=\"client.name\" name=\"name\" #name=\"ngModel\">\n        <div *ngIf=\"name.invalid && (name.dirty || name.touched)\"\n             class=\"error-message\">\n\n          <div *ngIf=\"name.errors.required\">\n            Name is required.\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"patronymic\">Отчество:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"patronymic\"\n               required\n               [(ngModel)]=\"client.patronymic\" name=\"patronymic\" #patronymic=\"ngModel\">\n        <div *ngIf=\"patronymic.invalid && (patronymic.dirty || patronymic.touched)\"\n             class=\"error-message\">\n\n          <div *ngIf=\"patronymic.errors.required\">\n            Name is required.\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"form-group phone\">\n        <label class=\"col-4\" for=\"phone\">Телефон:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"phone\"\n               required minlength=\"9\" maxlength=\"9\"\n               [(ngModel)]=\"client.phone\" name=\"phone\" #phone=\"ngModel\">\n        <div *ngIf=\"phone.invalid && (phone.dirty || phone.touched)\"\n             class=\"error-message\">\n\n          <div *ngIf=\"phone.errors.required\">\n            Name is required.\n          </div>\n\n          <div *ngIf=\"phone.errors.minlength\">\n            Name must be at least 9 characters long.\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"doctor\">Лечащий врач:</label>\n        <select class=\"form-control col-7\" id=\"doctor\" [(ngModel)]=\"client.doctor\" name=\"doctor\">\n          <option *ngFor=\"let employee of employees\" [value]=\"employee.lastname\">\n            {{employee.lastname}}\n          </option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"discount\">Дисконт:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"discount\"\n               [(ngModel)]=\"client.discount\" name=\"discount\">\n      </div>\n\n      <div class=\"form-group\">\n        <label class=\"col-4\" for=\"comment\">Комментарий:</label>\n        <input type=\"text\" class=\"form-control col-7\" id=\"comment\"\n               [(ngModel)]=\"client.comment\" name=\"comment\">\n      </div>\n\n      <div class=\"button-area\">\n        <button type=\"submit\" class=\"btn btn-success add-new-employee\" [disabled]=\"!clientForm.form.valid\">Submit</button>\n        <button class=\"btn btn-success add-new-employee\" *ngIf=\"editState\" (click)=\"editClient()\">Редактировать</button>\n        <button class=\"btn btn-primary\" (click)=\"state = true; editState = false; clientForm.reset();\">Назад</button>\n      </div>\n\n    </form>\n  </div>-->\n\n</div>\n"
+module.exports = "<div class=\"content col-12\">\n  <div class=\"employees-list\" *ngIf=\"listState\">\n    <h3 class=\"col-12\">Пациенты TalMedical</h3>\n\n    <div class=\"table col-10\">\n      <div class=\"table-head\">\n        <div class=\"table-cell col-3\"><p>Ф.И.О</p></div>\n        <div class=\"table-cell col-3\"><p>Телефон</p></div>\n        <div class=\"table-cell col-3\"><p>Лечащий врач</p></div>\n        <div class=\"table-cell col-3\"><p>Дисконт</p></div>\n      </div>\n      <div class=\"table-row\" *ngFor=\"let client of clients; let i = index\">\n        <div class=\"table-cell col-3 include-hover\">\n          <p>{{ client.lastname }} {{ client.name }} {{client.patronymic}}</p>\n          <div class=\"on-hover\">\n            <i class=\"fa fa-user-edit\" (click)=\"select(client, i); editState=true; listState=false;\"></i>\n            <i class=\"fa fa-trash\" (click)=\"openDeleteWindow(i)\"></i>\n          </div>\n        </div>\n        <div class=\"table-cell col-3 phone\" (click)=\"createCommentsArray(client)\">\n          <p>+380 {{ client.phone }}</p>\n          <span *ngIf=\"client.comment\"></span>\n          <p class=\"col-10 show-comment\" *ngIf=\"client.comment && comments.includes(client)\">{{ client.comment }}</p>\n        </div>\n        <div class=\"table-cell col-3\"><p>{{ client.doctor }}</p></div>\n        <div class=\"table-cell col-3\"><p>{{ client.discount }}</p></div>\n      </div>\n    </div>\n    <div class=\"col-sm-4 col-md-3 offset-8 button-area\">\n      <button class=\"btn btn-success green\" (click)=\"listState = false; addState = true;\">Добавить</button>\n      <button class=\"btn btn-primary\" (click)=\"returnToStart()\">Меню</button>\n    </div>\n\n  </div>\n\n  <app-client-edit-form\n          *ngIf=\"editState\"\n          [client]=\"selectedClient\"\n          (listState)=\"listState = $event; editState = !editState; editClient($event)\"\n          (closeState)=\"listState = $event; editState = !editState;\"></app-client-edit-form>\n  <app-client-add-form\n          *ngIf=\"addState\"\n          (listState)=\"listState = $event; addState = !addState; addClient($event)\"\n          (closeState)=\"listState = $event; addState = !addState;\"></app-client-add-form>\n</div>\n\n<!-- Модальное окно -->\n<div class=\"modal-window\" *ngIf=\"modalWindow\">\n  <div class=\"modal-content\">\n    <p>Удалить клиента\n      {{clients[indexDeleteClient].lastname}}\n      {{clients[indexDeleteClient].name[0]}}.\n      {{clients[indexDeleteClient].patronymic[0]}}. ?</p>\n    <footer>\n      <button class=\"btn btn-success\" (click)=\"modalWindow=!modalWindow; deleteClient()\">Да</button>\n      <button class=\"btn btn-primary\" (click)=\"modalWindow=!modalWindow\">Назад</button>\n    </footer>\n  </div>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -444,7 +476,7 @@ module.exports = "<div class=\"content col-12\">\n  <div class=\"employees-list\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".button-area {\n  margin-top: 20px;\n  margin-right: 10%;\n  display: flex;\n  justify-content: flex-end; }\n  .button-area .green {\n    margin-right: 10px; }\n  .form-area {\n  margin: 30px auto; }\n  .form-area .form-group:not(.textarea) {\n    height: 38px; }\n  .form-area .form-group {\n    display: flex;\n    position: relative; }\n  .form-area .form-group .ng-valid[required], .form-area .form-group .ng-valid.required {\n      border-right: 5px solid #61C180; }\n  .form-area .form-group .ng-invalid:not(form) {\n      border-right: 5px solid cornflowerblue; }\n  .form-area .form-group .hidden {\n      display: none; }\n  .form-area .form-group .error-message {\n      position: absolute;\n      left: 35%;\n      top: 100%;\n      display: block; }\n  .form-area .form-group .error-message div {\n        color: darkred;\n        font-size: 10px; }\n  .form-area .form-group label {\n      margin-top: 10px; }\n  .form-area .form-group input {\n      height: 100%; }\n  .form-area .form-group textarea {\n      font-size: 0.8em;\n      resize: none; }\n  .form-area .form-group input,\n    .form-area .form-group textarea {\n      border-radius: 5px;\n      border: 1px solid #eee;\n      outline: none;\n      box-shadow: none; }\n  .form-area .form-group input::-webkit-input-placeholder,\n      .form-area .form-group textarea::-webkit-input-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:-moz-placeholder,\n      .form-area .form-group textarea:-moz-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input::-moz-placeholder,\n      .form-area .form-group textarea::-moz-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:-ms-input-placeholder,\n      .form-area .form-group textarea:-ms-input-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:focus,\n      .form-area .form-group textarea:focus {\n        box-shadow: 0 0 5px cornflowerblue; }\n  .form-area .form-group input:focus::-webkit-input-placeholder,\n        .form-area .form-group textarea:focus::-webkit-input-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus:-moz-placeholder,\n        .form-area .form-group textarea:focus:-moz-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus::-moz-placeholder,\n        .form-area .form-group textarea:focus::-moz-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus:-ms-input-placeholder,\n        .form-area .form-group textarea:focus:-ms-input-placeholder {\n          opacity: 0; }\n  .form-area .form-group select {\n      background-color: white;\n      width: 100%;\n      line-height: 38px;\n      padding: 6px 20px 6px 15px;\n      border: 1px solid #eee; }\n  .form-area .form-group select:focus {\n        outline: none;\n        box-shadow: 0px 0px 5px cornflowerblue; }\n  .form-area .form-group select option {\n        padding-left: 30px; }\n  .form-area div.phone {\n    position: relative; }\n  .form-area div.phone input {\n      padding-left: 52px; }\n  .form-area div.phone::after {\n      content: '+380';\n      color: black;\n      position: absolute;\n      width: 20px;\n      height: 15px;\n      top: 20%;\n      left: 35%; }\n  .content h3 {\n  text-align: center;\n  margin-bottom: 20px; }\n  .content .table {\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  border: 1px solid #eee;\n  border-radius: 5px; }\n  .content .table .table-head {\n    background-color: #e6f2ff;\n    font-weight: bold; }\n  .content .table div {\n    display: flex;\n    justify-content: space-between;\n    max-height: 45px;\n    min-height: 45px; }\n  .content .table div .include-hover {\n      position: relative; }\n  .content .table div .include-hover:hover .on-hover {\n        opacity: 1; }\n  .content .table div .include-hover div.on-hover {\n        position: absolute;\n        justify-content: center !important;\n        align-items: center;\n        opacity: 0;\n        width: 100%;\n        background-color: #e6f2ff;\n        transition: opacity 500ms cubic-bezier(0.25, 0.1, 0.25, 1); }\n  .content .table div .include-hover div.on-hover .fa {\n          padding: 3px;\n          color: cornflowerblue;\n          border: 2px solid cornflowerblue;\n          border-radius: 3px;\n          cursor: pointer; }\n  .content .table div .include-hover div.on-hover .fa:first-of-type {\n            margin-right: 20px; }\n  .content .table div .include-hover div.on-hover .fa:last-of-type {\n            padding: 3px 6px; }\n  .content .table div .table-cell {\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      margin: 0;\n      padding: 10px 10px;\n      border: 1px solid #eee; }\n  .content .table div .table-cell p {\n        margin: 0;\n        font-size: 0.8em; }\n  .content .table div .phone {\n      position: relative; }\n  .content .table div .phone span {\n        position: absolute;\n        width: 5px;\n        height: 100%;\n        top: 0;\n        right: 0;\n        background-color: cornflowerblue; }\n  .content .table div .phone .show-comment {\n        position: absolute;\n        top: 120%;\n        left: 18%;\n        width: 100%;\n        min-height: 30px;\n        color: white;\n        background-color: #77b7fa;\n        font-size: 0.7em;\n        border-radius: 5px;\n        z-index: 10; }\n  .content .table div .phone .show-comment::after {\n          content: ' ';\n          position: absolute;\n          top: -10px;\n          left: 25%;\n          border-bottom: 10px solid #77b7fa;\n          border-right: 10px solid transparent;\n          border-left: 10px solid transparent; }\n"
+module.exports = ".button-area {\n  margin-top: 20px;\n  margin-right: 10%;\n  display: flex;\n  justify-content: flex-end; }\n  .button-area .green {\n    margin-right: 10px; }\n  .form-area {\n  margin: 30px auto; }\n  .form-area .form-group:not(.textarea) {\n    height: 38px; }\n  .form-area .form-group {\n    display: flex;\n    position: relative; }\n  .form-area .form-group .ng-valid[required], .form-area .form-group .ng-valid.required {\n      border-right: 5px solid #61C180; }\n  .form-area .form-group .ng-invalid:not(form) {\n      border-right: 5px solid cornflowerblue; }\n  .form-area .form-group .hidden {\n      display: none; }\n  .form-area .form-group .error-message {\n      position: absolute;\n      left: 35%;\n      top: 100%;\n      display: block; }\n  .form-area .form-group .error-message div {\n        color: darkred;\n        font-size: 10px; }\n  .form-area .form-group label {\n      margin-top: 10px; }\n  .form-area .form-group input {\n      height: 100%; }\n  .form-area .form-group textarea {\n      font-size: 0.8em;\n      resize: none; }\n  .form-area .form-group input,\n    .form-area .form-group textarea {\n      border-radius: 5px;\n      border: 1px solid #eee;\n      outline: none;\n      box-shadow: none; }\n  .form-area .form-group input::-webkit-input-placeholder,\n      .form-area .form-group textarea::-webkit-input-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:-moz-placeholder,\n      .form-area .form-group textarea:-moz-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input::-moz-placeholder,\n      .form-area .form-group textarea::-moz-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:-ms-input-placeholder,\n      .form-area .form-group textarea:-ms-input-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:focus,\n      .form-area .form-group textarea:focus {\n        box-shadow: 0 0 5px cornflowerblue; }\n  .form-area .form-group input:focus::-webkit-input-placeholder,\n        .form-area .form-group textarea:focus::-webkit-input-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus:-moz-placeholder,\n        .form-area .form-group textarea:focus:-moz-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus::-moz-placeholder,\n        .form-area .form-group textarea:focus::-moz-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus:-ms-input-placeholder,\n        .form-area .form-group textarea:focus:-ms-input-placeholder {\n          opacity: 0; }\n  .form-area .form-group select {\n      background-color: white;\n      width: 100%;\n      line-height: 38px;\n      padding: 6px 20px 6px 15px;\n      border: 1px solid #eee; }\n  .form-area .form-group select:focus {\n        outline: none;\n        box-shadow: 0px 0px 5px cornflowerblue; }\n  .form-area .form-group select option {\n        padding-left: 30px; }\n  .form-area div.phone {\n    position: relative; }\n  .form-area div.phone input {\n      padding-left: 52px; }\n  .form-area div.phone::after {\n      content: '+380';\n      color: black;\n      position: absolute;\n      width: 20px;\n      height: 15px;\n      top: 20%;\n      left: 35%; }\n  .content h3 {\n  text-align: center;\n  margin-bottom: 20px; }\n  .content .table {\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  border: 1px solid #eee;\n  border-radius: 5px; }\n  .content .table .table-head {\n    background-color: #e6f2ff;\n    font-weight: bold; }\n  .content .table div {\n    display: flex;\n    justify-content: space-between;\n    max-height: 45px;\n    min-height: 45px; }\n  .content .table div .include-hover {\n      position: relative; }\n  .content .table div .include-hover:hover .on-hover {\n        opacity: 1; }\n  .content .table div .include-hover div.on-hover {\n        position: absolute;\n        justify-content: center !important;\n        align-items: center;\n        opacity: 0;\n        width: 100%;\n        background-color: #e6f2ff;\n        transition: opacity 500ms cubic-bezier(0.25, 0.1, 0.25, 1); }\n  .content .table div .include-hover div.on-hover .fa {\n          padding: 3px;\n          color: cornflowerblue;\n          border: 2px solid cornflowerblue;\n          border-radius: 3px;\n          cursor: pointer; }\n  .content .table div .include-hover div.on-hover .fa:first-of-type {\n            margin-right: 20px; }\n  .content .table div .include-hover div.on-hover .fa:last-of-type {\n            padding: 3px 6px; }\n  .content .table div .table-cell {\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      margin: 0;\n      padding: 10px 10px;\n      border: 1px solid #eee; }\n  .content .table div .table-cell p {\n        margin: 0;\n        font-size: 0.8em; }\n  .content .table div .phone {\n      position: relative; }\n  .content .table div .phone span {\n        position: absolute;\n        width: 5px;\n        height: 100%;\n        top: 0;\n        right: 0;\n        background-color: cornflowerblue; }\n  .content .table div .phone .show-comment {\n        position: absolute;\n        top: 120%;\n        left: 18%;\n        width: 100%;\n        min-height: 30px;\n        color: white;\n        background-color: #77b7fa;\n        font-size: 0.7em;\n        border-radius: 5px;\n        z-index: 10; }\n  .content .table div .phone .show-comment::after {\n          content: ' ';\n          position: absolute;\n          top: -10px;\n          left: 25%;\n          border-bottom: 10px solid #77b7fa;\n          border-right: 10px solid transparent;\n          border-left: 10px solid transparent; }\n  .modal-window {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background-color: rgba(100, 149, 237, 0.5);\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .modal-window .modal-content {\n    width: 30%;\n    height: 30%;\n    padding: 20px;\n    border: 1px solid cornflowerblue;\n    border-radius: 5px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    background-color: #e6f2ff; }\n  .modal-window .modal-content footer button:first-of-type {\n      margin-right: 10px; }\n"
 
 /***/ }),
 
@@ -490,6 +522,7 @@ var ClientsComponent = /** @class */ (function () {
         this.listState = true;
         this.editState = false;
         this.addState = false;
+        this.modalWindow = false;
         this.employeeService.getEmployees()
             .subscribe(function (res) { return _this.employees = res; }, function (error) { return _this.router.navigate(['/error']); });
         this.clientService.getClients()
@@ -501,8 +534,9 @@ var ClientsComponent = /** @class */ (function () {
     ClientsComponent.prototype.returnToStart = function () {
         this.router.navigate(['/main/start']);
     };
-    ClientsComponent.prototype.select = function (client) {
+    ClientsComponent.prototype.select = function (client, index) {
         this.selectedClient = client;
+        this.indexEditClient = index;
     };
     ClientsComponent.prototype.createCommentsArray = function (client) {
         if (this.comments.includes(client)) {
@@ -512,6 +546,29 @@ var ClientsComponent = /** @class */ (function () {
             this.comments = [];
             this.comments.push(client);
         }
+    };
+    ClientsComponent.prototype.addClient = function (newClient) {
+        var _this = this;
+        this.clients.push(newClient);
+        this.clientService.refreshClient(this.clients)
+            .subscribe(function (res) { }, function (error) { return _this.router.navigate(['/error']); });
+    };
+    ClientsComponent.prototype.openDeleteWindow = function (i) {
+        this.modalWindow = true;
+        this.indexDeleteClient = i;
+    };
+    ClientsComponent.prototype.deleteClient = function () {
+        var _this = this;
+        this.clients.splice(this.indexDeleteClient, 1);
+        this.clientService.refreshClient(this.clients)
+            .subscribe(function (res) { }, function (error) { return _this.router.navigate(['/error']); });
+    };
+    ClientsComponent.prototype.editClient = function (client) {
+        var _this = this;
+        this.clients.splice(this.indexEditClient, 1, client);
+        console.log(this.clients);
+        this.clientService.refreshClient(this.clients)
+            .subscribe(function (res) { }, function (error) { return _this.router.navigate(['/error']); });
     };
     ClientsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -535,7 +592,7 @@ var ClientsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-12 col-md-6 col-lg-6 form-area\">\n  <form #employeeForm=\"ngForm\" (ngSubmit)=\"addEmployee(employeeForm)\">\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"lastname\">Фамилия:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"lastname\"\n             required\n             [(ngModel)]=\"employee.lastname\" name=\"lastname\" #lastname=\"ngModel\">\n\n      <div *ngIf=\"lastname.invalid && (lastname.dirty || lastname.touched)\" class=\"error-message\">\n        <div *ngIf=\"lastname.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!lastname.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"name\">Имя:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"name\"\n             required\n             [(ngModel)]=\"employee.name\" name=\"name\" #name=\"ngModel\">\n      <div *ngIf=\"name.invalid && (name.dirty || name.touched)\" class=\"error-message\">\n        <div *ngIf=\"name.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!name.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"patronymic\">Отчество:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"patronymic\"\n             [(ngModel)]=\"employee.patronymic\" name=\"patronymic\">\n    </div>\n\n    <div class=\"form-group phone\">\n      <label class=\"col-4\" for=\"phone\">Телефон:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"phone\"\n             minlength=\"9\" maxlength=\"9\"\n             [(ngModel)]=\"employee.phone\" name=\"phone\" #phone=\"ngModel\">\n      <div *ngIf=\"phone.invalid && (phone.dirty || phone.touched)\" class=\"error-message\">\n        <div *ngIf=\"phone.errors.minlength\">Телефон должен состоять из 9 знаков</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"role\">Должность:</label>\n      <select class=\"form-control col-7\" id=\"role\" [(ngModel)]=\"employee.role\" name=\"role\" #role=\"ngModel\" required>\n        <option value=\"1\">Админ</option>\n        <option value=\"2\">Доктор</option>\n      </select>\n      <div *ngIf=\"role.invalid && (role.dirty || role.touched)\" class=\"error-message\">\n        <div *ngIf=\"login.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!role.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"login\">Логин:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"login\"\n             [(ngModel)]=\"employee.login\" name=\"login\" #login=\"ngModel\" required>\n      <div *ngIf=\"login.invalid && (login.dirty || login.touched)\" class=\"error-message\">\n        <div *ngIf=\"login.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!login.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"password\">Пароль:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"password\"\n                [(ngModel)]=\"employee.password\" name=\"password\" #password=\"ngModel\" required>\n      <div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"error-message\">\n        <div *ngIf=\"password.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!password.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"button-area\">\n      <button type=\"submit\" class=\"btn btn-success green\">Ок</button>\n      <button type=\"button\" class=\"btn btn-primary blue\" (click)=\"changeBoolean(); employeeForm.reset();\">Назад</button>\n    </div>\n\n  </form>\n</div>\n"
+module.exports = "<div class=\"col-sm-12 col-md-6 col-lg-6 form-area\">\n  <form #employeeForm=\"ngForm\" (ngSubmit)=\"addEmployee(employeeForm)\">\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"lastname\">Фамилия:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"lastname\"\n             required\n             [(ngModel)]=\"employee.lastname\" name=\"lastname\" #lastname=\"ngModel\">\n\n      <div *ngIf=\"lastname.invalid && (lastname.dirty || lastname.touched)\" class=\"error-message\">\n        <div *ngIf=\"lastname.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!lastname.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"name\">Имя:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"name\"\n             required\n             [(ngModel)]=\"employee.name\" name=\"name\" #name=\"ngModel\">\n      <div *ngIf=\"name.invalid && (name.dirty || name.touched)\" class=\"error-message\">\n        <div *ngIf=\"name.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!name.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"patronymic\">Отчество:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"patronymic\"\n             [(ngModel)]=\"employee.patronymic\" name=\"patronymic\">\n    </div>\n\n    <div class=\"form-group phone\">\n      <label class=\"col-4\" for=\"phone\">Телефон:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"phone\"\n             minlength=\"9\" maxlength=\"9\"\n             [(ngModel)]=\"employee.phone\" name=\"phone\" #phone=\"ngModel\">\n      <div *ngIf=\"phone.invalid && (phone.dirty || phone.touched)\" class=\"error-message\">\n        <div *ngIf=\"phone.errors.minlength\">Телефон должен состоять из 9 знаков</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"role\">Должность:</label>\n      <select class=\"form-control col-7\" id=\"role\" [(ngModel)]=\"employee.role\" name=\"role\" #role=\"ngModel\" required>\n        <option value=\"1\">Админ</option>\n        <option value=\"2\">Доктор</option>\n      </select>\n      <div *ngIf=\"role.invalid && (role.dirty || role.touched)\" class=\"error-message\">\n        <div *ngIf=\"login.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!role.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"login\">Логин:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"login\"\n             [(ngModel)]=\"employee.login\" name=\"login\" #login=\"ngModel\" required>\n      <div *ngIf=\"login.invalid && (login.dirty || login.touched)\" class=\"error-message\">\n        <div *ngIf=\"login.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!login.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-4\" for=\"password\">Пароль:</label>\n      <input type=\"text\" class=\"form-control col-7\" id=\"password\"\n                [(ngModel)]=\"employee.password\" name=\"password\" #password=\"ngModel\" required>\n      <div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"error-message\">\n        <div *ngIf=\"password.errors.required\">Заполните это поле</div>\n      </div>\n      <div class=\"hidden\" [class.error-message]=\"errorMessage\" *ngIf=\"!password.dirty\">\n        <div>Заполните это поле</div>\n      </div>\n    </div>\n\n    <div class=\"button-area\">\n      <button type=\"submit\" class=\"btn btn-success green\">Ок</button>\n      <button type=\"button\" class=\"btn btn-primary blue\" (click)=\"close(); employeeForm.reset();\">Назад</button>\n    </div>\n\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -582,12 +639,16 @@ var EmployeeAddFormComponent = /** @class */ (function () {
         this.router = router;
         this.employeeService = employeeService;
         this.listState = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.closeState = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     EmployeeAddFormComponent.prototype.ngOnInit = function () {
         this.employee = new _models_employee__WEBPACK_IMPORTED_MODULE_3__["Employee"];
     };
-    EmployeeAddFormComponent.prototype.changeBoolean = function () {
-        this.listState.emit(true);
+    EmployeeAddFormComponent.prototype.changeBoolean = function (newEmployee) {
+        this.listState.emit(newEmployee);
+    };
+    EmployeeAddFormComponent.prototype.close = function () {
+        this.closeState.emit(true);
     };
     EmployeeAddFormComponent.prototype.addEmployee = function (form) {
         if (form.invalid) {
@@ -598,12 +659,12 @@ var EmployeeAddFormComponent = /** @class */ (function () {
         var newEmployee = new _models_employee__WEBPACK_IMPORTED_MODULE_3__["Employee"];
         newEmployee.lastname = value.lastname;
         newEmployee.name = value.name;
-        newEmployee.patronymic = value.patronymic;
-        newEmployee.phone = value.phone;
-        newEmployee.login = value.comment;
-        newEmployee.password = value.discount;
-        newEmployee.role = value.doctor;
-        this.changeBoolean(); // TODO: remove after DB connecting
+        newEmployee.patronymic = value.patronymic || null;
+        newEmployee.phone = value.phone || null;
+        newEmployee.login = value.login;
+        newEmployee.password = value.password;
+        newEmployee.role = value.role;
+        this.changeBoolean(newEmployee); // TODO: remove after DB connecting
         /*this.employeeService.addEmployee(newEmployee)
           .subscribe(
             (res) => this.changeBoolean(),
@@ -614,6 +675,10 @@ var EmployeeAddFormComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", Object)
     ], EmployeeAddFormComponent.prototype, "listState", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", Object)
+    ], EmployeeAddFormComponent.prototype, "closeState", void 0);
     EmployeeAddFormComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-employee-add-form',
@@ -636,7 +701,7 @@ var EmployeeAddFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content col-12\">\n  <div class=\"employees-list\" *ngIf=\"listState\">\n    <h3 class=\"col-12\">Сотрудники TalMedical</h3>\n    <div class=\"table col-10\">\n      <div class=\"table-head\">\n        <div class=\"table-cell col-3\"><p>Ф.И.О</p></div>\n        <div class=\"table-cell col-2\"><p>Должность</p></div>\n        <div class=\"table-cell col-2\"><p>Логин</p></div>\n        <div class=\"table-cell col-2\"><p>Пароль</p></div>\n        <div class=\"table-cell col-3\"><p>Телефон</p></div>\n      </div>\n      <div class=\"table-row\" *ngFor=\"let employee of employees\">\n        <div class=\"table-cell col-3 include-hover\">\n          <p>{{ employee.lastname }} {{ employee.name }} {{employee.patronymic}}</p>\n          <div class=\"on-hover\">\n            <!--<i class=\"fa fa-user-edit\"></i>-->\n            <i class=\"fa fa-trash\"></i>\n          </div>\n        </div>\n        <div class=\"table-cell col-2\"><p>{{ employee.role }}</p></div>\n        <div class=\"table-cell col-2\"><p>{{ employee.login }}</p></div>\n        <div class=\"table-cell col-2\"><p>{{ employee.password }}</p></div>\n        <div class=\"table-cell col-3\"><p>+380 {{ employee.phone }}</p></div>\n      </div>\n    </div>\n    <div class=\"col-sm-4 col-md-3 offset-8 button-area\">\n      <button class=\"btn btn-success green\" (click)=\"addState = true; listState = false\">Добавить</button>\n      <button class=\"btn btn-primary blue\" (click)=\"returnToStart()\">Меню</button>\n    </div>\n  </div>\n\n  <app-employee-add-form *ngIf=\"addState\" (listState)=\"listState = $event; addState = !addState\"></app-employee-add-form>\n\n\n  <!--<div class=\"form-area col-6\" *ngIf=\"!state\">\n    <form>\n      <label class=\"col-3\" for=\"lastname\">Фамилия:</label>\n      <input class=\"col-7 offset-1\" id=\"lastname\" type=\"text\" placeholder=\"Фамилия\" name=\"lastname\" [(ngModel)]=\"employee.lastname\">\n\n      <label class=\"col-3\" for=\"name\">Имя:</label>\n      <input class=\"col-7 offset-1\" id=\"name\" type=\"text\" placeholder=\"Имя\" name=\"name\" [(ngModel)]=\"employee.name\">\n\n      <label class=\"col-3\" for=\"patronymic\">Отчество:</label>\n      <input class=\"col-7 offset-1\" id=\"patronymic\" type=\"text\" placeholder=\"Отчество\" name=\"patronymic\" [(ngModel)]=\"employee.patronymic\">\n\n      <label class=\"col-3 phone\" for=\"phone\">Телефон:</label>\n      <div class=\"phone col-7 offset-1\">\n        <input class=\"\" id=\"phone\" type=\"text\" name=\"phone\" [(ngModel)]=\"employee.phone\" specialCharacters=\"' '\" mask=\"00 000 00 00\">\n      </div>\n\n      <label class=\"col-3\" for=\"role\">Должность:</label>\n      <div class=\"select col-7 offset-1\" id=\"role\">\n        <select class=\"col-8\" name=\"role\" name=\"role\" [(ngModel)]=\"employee.role\">\n          <option value=\"1\">Админ</option>\n          <option value=\"2\">Доктор</option>\n        </select>\n      </div>\n\n      <label class=\"col-3\" for=\"login\">Логин:</label>\n      <input class=\"col-7 offset-1\" id=\"login\" type=\"text\" placeholder=\"Логин\" name=\"login\" [(ngModel)]=\"employee.login\">\n\n      <label class=\"col-3\" for=\"pass\">Пароль:</label>\n      <input class=\"col-7 offset-1\" id=\"pass\" type=\"password\" placeholder=\"Пароль\" name=\"password\" [(ngModel)]=\"employee.password\">\n    </form>\n    <div class=\"button-area\">\n      <button class=\"btn btn-success green\" (click)=\"addNew()\">Ok</button>\n      <button class=\"btn btn-primary blue\" (click)=\"state = true; error = false\">Назад</button>\n    </div>\n  </div>-->\n</div>\n"
+module.exports = "<div class=\"content col-12\">\n  <div class=\"employees-list\" *ngIf=\"listState\">\n    <h3 class=\"col-12\">Сотрудники TalMedical</h3>\n    <div class=\"table col-10\">\n      <div class=\"table-head\">\n        <div class=\"table-cell col-3\"><p>Ф.И.О</p></div>\n        <div class=\"table-cell col-2\"><p>Должность</p></div>\n        <div class=\"table-cell col-2\"><p>Логин</p></div>\n        <div class=\"table-cell col-2\"><p>Пароль</p></div>\n        <div class=\"table-cell col-3\"><p>Телефон</p></div>\n      </div>\n      <div class=\"table-row\" *ngFor=\"let employee of employees; let i = index\">\n        <div class=\"table-cell col-3 include-hover\">\n          <p>{{ employee.lastname }} {{ employee.name }} {{employee.patronymic}}</p>\n          <div class=\"on-hover\">\n            <!--<i class=\"fa fa-user-edit\"></i>-->\n            <i class=\"fa fa-trash\" (click)=\"openDeleteWindow(i)\"></i>\n          </div>\n        </div>\n        <div class=\"table-cell col-2\">\n          <p>{{ employee.role == '1' ? 'Админ' : (employee.role == '2' ? 'Доктор' : 'Определите роль') }}</p>\n        </div>\n        <div class=\"table-cell col-2\"><p>{{ employee.login }}</p></div>\n        <div class=\"table-cell col-2\"><p>{{ employee.password }}</p></div>\n        <div class=\"table-cell col-3\">\n          <p *ngIf=\"employee.phone\">+380 {{ employee.phone }}</p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-sm-4 col-md-3 offset-8 button-area\">\n      <button class=\"btn btn-success green\" (click)=\"addState = true; listState = false\">Добавить</button>\n      <button class=\"btn btn-primary blue\" (click)=\"returnToStart()\">Меню</button>\n    </div>\n  </div>\n\n  <app-employee-add-form\n          *ngIf=\"addState\"\n          (listState)=\"listState = $event; addState = !addState; addEmployee($event)\"\n          (closeState)=\"listState = $event; addState = !addState;\"></app-employee-add-form>\n</div>\n\n<!-- Модальное окно -->\n<div class=\"modal-window\" *ngIf=\"modalWindow\">\n  <div class=\"modal-content\">\n    <p>Удалить сотрудника\n      {{employees[indexDeleteEmployee].lastname}}\n      {{employees[indexDeleteEmployee].name[0]}}.\n      {{employees[indexDeleteEmployee].patronymic ? employees[indexDeleteEmployee].patronymic[0] + \".\" : null}} ?</p>\n    <footer>\n      <button class=\"btn btn-success\" (click)=\"modalWindow=!modalWindow; deleteEmployee()\">Да</button>\n      <button class=\"btn btn-primary\" (click)=\"modalWindow=!modalWindow\">Назад</button>\n    </footer>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -647,7 +712,7 @@ module.exports = "<div class=\"content col-12\">\n  <div class=\"employees-list\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".button-area {\n  margin-top: 20px;\n  margin-right: 10%;\n  display: flex;\n  justify-content: flex-end; }\n  .button-area .green {\n    margin-right: 10px; }\n  .form-area {\n  margin: 30px auto; }\n  .form-area .form-group:not(.textarea) {\n    height: 38px; }\n  .form-area .form-group {\n    display: flex;\n    position: relative; }\n  .form-area .form-group .ng-valid[required], .form-area .form-group .ng-valid.required {\n      border-right: 5px solid #61C180; }\n  .form-area .form-group .ng-invalid:not(form) {\n      border-right: 5px solid cornflowerblue; }\n  .form-area .form-group .hidden {\n      display: none; }\n  .form-area .form-group .error-message {\n      position: absolute;\n      left: 35%;\n      top: 100%;\n      display: block; }\n  .form-area .form-group .error-message div {\n        color: darkred;\n        font-size: 10px; }\n  .form-area .form-group label {\n      margin-top: 10px; }\n  .form-area .form-group input {\n      height: 100%; }\n  .form-area .form-group textarea {\n      font-size: 0.8em;\n      resize: none; }\n  .form-area .form-group input,\n    .form-area .form-group textarea {\n      border-radius: 5px;\n      border: 1px solid #eee;\n      outline: none;\n      box-shadow: none; }\n  .form-area .form-group input::-webkit-input-placeholder,\n      .form-area .form-group textarea::-webkit-input-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:-moz-placeholder,\n      .form-area .form-group textarea:-moz-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input::-moz-placeholder,\n      .form-area .form-group textarea::-moz-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:-ms-input-placeholder,\n      .form-area .form-group textarea:-ms-input-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:focus,\n      .form-area .form-group textarea:focus {\n        box-shadow: 0 0 5px cornflowerblue; }\n  .form-area .form-group input:focus::-webkit-input-placeholder,\n        .form-area .form-group textarea:focus::-webkit-input-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus:-moz-placeholder,\n        .form-area .form-group textarea:focus:-moz-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus::-moz-placeholder,\n        .form-area .form-group textarea:focus::-moz-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus:-ms-input-placeholder,\n        .form-area .form-group textarea:focus:-ms-input-placeholder {\n          opacity: 0; }\n  .form-area .form-group select {\n      background-color: white;\n      width: 100%;\n      line-height: 38px;\n      padding: 6px 20px 6px 15px;\n      border: 1px solid #eee; }\n  .form-area .form-group select:focus {\n        outline: none;\n        box-shadow: 0px 0px 5px cornflowerblue; }\n  .form-area .form-group select option {\n        padding-left: 30px; }\n  .form-area div.phone {\n    position: relative; }\n  .form-area div.phone input {\n      padding-left: 52px; }\n  .form-area div.phone::after {\n      content: '+380';\n      color: black;\n      position: absolute;\n      width: 20px;\n      height: 15px;\n      top: 20%;\n      left: 35%; }\n  .content h3 {\n  text-align: center;\n  margin-bottom: 20px; }\n  .content .table {\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  border: 1px solid #eee;\n  border-radius: 5px; }\n  .content .table .table-head {\n    background-color: #e6f2ff;\n    font-weight: bold; }\n  .content .table div {\n    display: flex;\n    justify-content: space-between;\n    max-height: 45px;\n    min-height: 45px; }\n  .content .table div .include-hover {\n      position: relative; }\n  .content .table div .include-hover:hover .on-hover {\n        opacity: 1; }\n  .content .table div .include-hover div.on-hover {\n        position: absolute;\n        justify-content: center !important;\n        align-items: center;\n        opacity: 0;\n        width: 100%;\n        background-color: #e6f2ff;\n        transition: opacity 500ms cubic-bezier(0.25, 0.1, 0.25, 1); }\n  .content .table div .include-hover div.on-hover .fa {\n          padding: 3px;\n          color: cornflowerblue;\n          border: 2px solid cornflowerblue;\n          border-radius: 3px;\n          cursor: pointer; }\n  .content .table div .include-hover div.on-hover .fa:first-of-type {\n            margin-right: 20px; }\n  .content .table div .include-hover div.on-hover .fa:last-of-type {\n            padding: 3px 6px; }\n  .content .table div .table-cell {\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      margin: 0;\n      padding: 10px 10px;\n      border: 1px solid #eee; }\n  .content .table div .table-cell p {\n        margin: 0;\n        font-size: 0.8em; }\n  .content .table div .phone {\n      position: relative; }\n  .content .table div .phone span {\n        position: absolute;\n        width: 5px;\n        height: 100%;\n        top: 0;\n        right: 0;\n        background-color: cornflowerblue; }\n  .content .table div .phone .show-comment {\n        position: absolute;\n        top: 120%;\n        left: 18%;\n        width: 100%;\n        min-height: 30px;\n        color: white;\n        background-color: #77b7fa;\n        font-size: 0.7em;\n        border-radius: 5px;\n        z-index: 10; }\n  .content .table div .phone .show-comment::after {\n          content: ' ';\n          position: absolute;\n          top: -10px;\n          left: 25%;\n          border-bottom: 10px solid #77b7fa;\n          border-right: 10px solid transparent;\n          border-left: 10px solid transparent; }\n"
+module.exports = ".button-area {\n  margin-top: 20px;\n  margin-right: 10%;\n  display: flex;\n  justify-content: flex-end; }\n  .button-area .green {\n    margin-right: 10px; }\n  .form-area {\n  margin: 30px auto; }\n  .form-area .form-group:not(.textarea) {\n    height: 38px; }\n  .form-area .form-group {\n    display: flex;\n    position: relative; }\n  .form-area .form-group .ng-valid[required], .form-area .form-group .ng-valid.required {\n      border-right: 5px solid #61C180; }\n  .form-area .form-group .ng-invalid:not(form) {\n      border-right: 5px solid cornflowerblue; }\n  .form-area .form-group .hidden {\n      display: none; }\n  .form-area .form-group .error-message {\n      position: absolute;\n      left: 35%;\n      top: 100%;\n      display: block; }\n  .form-area .form-group .error-message div {\n        color: darkred;\n        font-size: 10px; }\n  .form-area .form-group label {\n      margin-top: 10px; }\n  .form-area .form-group input {\n      height: 100%; }\n  .form-area .form-group textarea {\n      font-size: 0.8em;\n      resize: none; }\n  .form-area .form-group input,\n    .form-area .form-group textarea {\n      border-radius: 5px;\n      border: 1px solid #eee;\n      outline: none;\n      box-shadow: none; }\n  .form-area .form-group input::-webkit-input-placeholder,\n      .form-area .form-group textarea::-webkit-input-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:-moz-placeholder,\n      .form-area .form-group textarea:-moz-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input::-moz-placeholder,\n      .form-area .form-group textarea::-moz-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:-ms-input-placeholder,\n      .form-area .form-group textarea:-ms-input-placeholder {\n        color: #c4d9ff;\n        font-size: 14px;\n        font-style: italic;\n        opacity: 1;\n        transition: opacity 200ms; }\n  .form-area .form-group input:focus,\n      .form-area .form-group textarea:focus {\n        box-shadow: 0 0 5px cornflowerblue; }\n  .form-area .form-group input:focus::-webkit-input-placeholder,\n        .form-area .form-group textarea:focus::-webkit-input-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus:-moz-placeholder,\n        .form-area .form-group textarea:focus:-moz-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus::-moz-placeholder,\n        .form-area .form-group textarea:focus::-moz-placeholder {\n          opacity: 0; }\n  .form-area .form-group input:focus:-ms-input-placeholder,\n        .form-area .form-group textarea:focus:-ms-input-placeholder {\n          opacity: 0; }\n  .form-area .form-group select {\n      background-color: white;\n      width: 100%;\n      line-height: 38px;\n      padding: 6px 20px 6px 15px;\n      border: 1px solid #eee; }\n  .form-area .form-group select:focus {\n        outline: none;\n        box-shadow: 0px 0px 5px cornflowerblue; }\n  .form-area .form-group select option {\n        padding-left: 30px; }\n  .form-area div.phone {\n    position: relative; }\n  .form-area div.phone input {\n      padding-left: 52px; }\n  .form-area div.phone::after {\n      content: '+380';\n      color: black;\n      position: absolute;\n      width: 20px;\n      height: 15px;\n      top: 20%;\n      left: 35%; }\n  .content h3 {\n  text-align: center;\n  margin-bottom: 20px; }\n  .content .table {\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  border: 1px solid #eee;\n  border-radius: 5px; }\n  .content .table .table-head {\n    background-color: #e6f2ff;\n    font-weight: bold; }\n  .content .table div {\n    display: flex;\n    justify-content: space-between;\n    max-height: 45px;\n    min-height: 45px; }\n  .content .table div .include-hover {\n      position: relative; }\n  .content .table div .include-hover:hover .on-hover {\n        opacity: 1; }\n  .content .table div .include-hover div.on-hover {\n        position: absolute;\n        justify-content: center !important;\n        align-items: center;\n        opacity: 0;\n        width: 100%;\n        background-color: #e6f2ff;\n        transition: opacity 500ms cubic-bezier(0.25, 0.1, 0.25, 1); }\n  .content .table div .include-hover div.on-hover .fa {\n          padding: 3px;\n          color: cornflowerblue;\n          border: 2px solid cornflowerblue;\n          border-radius: 3px;\n          cursor: pointer; }\n  .content .table div .include-hover div.on-hover .fa:first-of-type {\n            margin-right: 20px; }\n  .content .table div .include-hover div.on-hover .fa:last-of-type {\n            padding: 3px 6px; }\n  .content .table div .table-cell {\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      margin: 0;\n      padding: 10px 10px;\n      border: 1px solid #eee; }\n  .content .table div .table-cell p {\n        margin: 0;\n        font-size: 0.8em; }\n  .content .table div .phone {\n      position: relative; }\n  .content .table div .phone span {\n        position: absolute;\n        width: 5px;\n        height: 100%;\n        top: 0;\n        right: 0;\n        background-color: cornflowerblue; }\n  .content .table div .phone .show-comment {\n        position: absolute;\n        top: 120%;\n        left: 18%;\n        width: 100%;\n        min-height: 30px;\n        color: white;\n        background-color: #77b7fa;\n        font-size: 0.7em;\n        border-radius: 5px;\n        z-index: 10; }\n  .content .table div .phone .show-comment::after {\n          content: ' ';\n          position: absolute;\n          top: -10px;\n          left: 25%;\n          border-bottom: 10px solid #77b7fa;\n          border-right: 10px solid transparent;\n          border-left: 10px solid transparent; }\n  .modal-window {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background-color: rgba(100, 149, 237, 0.5);\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .modal-window .modal-content {\n    width: 30%;\n    height: 30%;\n    padding: 20px;\n    border: 1px solid cornflowerblue;\n    border-radius: 5px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    background-color: #e6f2ff; }\n  .modal-window .modal-content footer button:first-of-type {\n      margin-right: 10px; }\n"
 
 /***/ }),
 
@@ -687,6 +752,7 @@ var EmployeesComponent = /** @class */ (function () {
         var _this = this;
         this.listState = true;
         this.addState = false;
+        this.modalWindow = false;
         this.employee = new _models_employee__WEBPACK_IMPORTED_MODULE_2__["Employee"];
         this.employee.role = 2;
         this.employeeService.getEmployees()
@@ -694,6 +760,22 @@ var EmployeesComponent = /** @class */ (function () {
     };
     EmployeesComponent.prototype.returnToStart = function () {
         this.router.navigate(['/main/start']);
+    };
+    EmployeesComponent.prototype.addEmployee = function (newEmployee) {
+        var _this = this;
+        this.employees.push(newEmployee);
+        this.employeeService.refreshEmployee(this.employees)
+            .subscribe(function (res) { }, function (error) { return _this.router.navigate(['/error']); });
+    };
+    EmployeesComponent.prototype.openDeleteWindow = function (i) {
+        this.modalWindow = true;
+        this.indexDeleteEmployee = i;
+    };
+    EmployeesComponent.prototype.deleteEmployee = function () {
+        var _this = this;
+        this.employees.splice(this.indexDeleteEmployee, 1);
+        this.employeeService.refreshEmployee(this.employees)
+            .subscribe(function (res) { }, function (error) { return _this.router.navigate(['/error']); });
     };
     EmployeesComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -997,7 +1079,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n  <div class=\"content\">\n    <router-outlet></router-outlet>\n  </div>\n\n\n\n <!-- <div>\n    <input type=\"text\" #name>\n    <input type=\"text\" #age>\n    <input type=\"text\" #phone>\n    <button class=\"btn btn-success\" (click)=\"onSave(name.value, age.value, phone.value)\">Save</button>\n  </div>-->\n\n  <!--<button class=\"btn btn-success\" (click)=\"onGet()\">Get</button>-->\n\n\n  <!--<div *ngIf=\"data2\">User: {{ data2.name }}</div>-->\n</div>\n"
+module.exports = "<div class=\"container\">\n\n  <div class=\"content\">\n    <router-outlet></router-outlet>\n  </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -1078,7 +1160,7 @@ var MainComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content col-10 offset-1\">\n  <div class=\"top-content col-12\">\n\n    <div class=\"col-3\" (click)=\"moveToClientsList()\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-users\"></i>\n      </div>\n      <p>Клиенты</p>\n    </div>\n\n    <div class=\"col-3\" (click)=\"moveToEmployeePage()\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-user-md\"></i>\n      </div>\n      <p>Сотрудники</p>\n    </div>\n  </div>\n\n  <div class=\"bottom-content col-12\">\n    <div class=\"col-3\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-clipboard-list\"></i>\n      </div>\n      <p>Таблица посещений</p>\n    </div>\n\n    <!--<div class=\"col-3\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-cogs\"></i>\n      </div>\n      <p>Настройки</p>\n    </div>-->\n\n    <div class=\"col-3\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-hospital-alt\"></i>\n      </div>\n      <p>Кабинеты</p>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"content col-10 offset-1\">\n  <div class=\"top-content col-12\">\n\n    <div class=\"col-3\" (click)=\"moveToClientsList()\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-users\"></i>\n      </div>\n      <p>Клиенты</p>\n    </div>\n\n    <div class=\"col-3\" (click)=\"moveToEmployeePage()\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-user-md\"></i>\n      </div>\n      <p>Сотрудники</p>\n    </div>\n  </div>\n\n  <div class=\"bottom-content col-12\">\n    <div class=\"col-3\" (click)=\"moveToWorkPage()\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-clipboard-list\"></i>\n      </div>\n      <p>Таблица посещений</p>\n    </div>\n\n    <!--<div class=\"col-3\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-cogs\"></i>\n      </div>\n      <p>Настройки</p>\n    </div>-->\n\n    <div class=\"col-3\" (click)=\"moveToWorkPage()\">\n      <div class=\"fa-content\">\n        <i class=\"fa fa-hospital-alt\"></i>\n      </div>\n      <p>Кабинеты</p>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1128,6 +1210,9 @@ var StartPageComponent = /** @class */ (function () {
     StartPageComponent.prototype.moveToClientsList = function () {
         this.router.navigate(['main/clients']);
     };
+    StartPageComponent.prototype.moveToWorkPage = function () {
+        this.router.navigate(['main/work']);
+    };
     StartPageComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-start-page',
@@ -1137,6 +1222,75 @@ var StartPageComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], StartPageComponent);
     return StartPageComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/work/work.component.html":
+/*!*****************************************************!*\
+  !*** ./src/app/components/work/work.component.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div style=\"margin: 10% auto; text-align: center\">\n  <h3>Страница в процессе разработки</h3>\n  <button class=\"btn btn-primary\" (click)=\"backToMenu()\">Меню</button>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/work/work.component.scss":
+/*!*****************************************************!*\
+  !*** ./src/app/components/work/work.component.scss ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/components/work/work.component.ts":
+/*!***************************************************!*\
+  !*** ./src/app/components/work/work.component.ts ***!
+  \***************************************************/
+/*! exports provided: WorkComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WorkComponent", function() { return WorkComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var WorkComponent = /** @class */ (function () {
+    function WorkComponent(router) {
+        this.router = router;
+    }
+    WorkComponent.prototype.ngOnInit = function () {
+    };
+    WorkComponent.prototype.backToMenu = function () {
+        this.router.navigate(['/main/start']);
+    };
+    WorkComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-work',
+            template: __webpack_require__(/*! ./work.component.html */ "./src/app/components/work/work.component.html"),
+            styles: [__webpack_require__(/*! ./work.component.scss */ "./src/app/components/work/work.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], WorkComponent);
+    return WorkComponent;
 }());
 
 
@@ -1204,6 +1358,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_employees_employees_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/employees/employees.component */ "./src/app/components/employees/employees.component.ts");
 /* harmony import */ var _components_start_page_start_page_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/start-page/start-page.component */ "./src/app/components/start-page/start-page.component.ts");
 /* harmony import */ var _components_clients_clients_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/clients/clients.component */ "./src/app/components/clients/clients.component.ts");
+/* harmony import */ var _components_work_work_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/work/work.component */ "./src/app/components/work/work.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1219,10 +1374,12 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+ // TODO: temporary page, delete after content creation
 var contentRoutes = [
     { path: 'start', component: _components_start_page_start_page_component__WEBPACK_IMPORTED_MODULE_7__["StartPageComponent"] },
     { path: 'employees', component: _components_employees_employees_component__WEBPACK_IMPORTED_MODULE_6__["EmployeesComponent"] },
-    { path: 'clients', component: _components_clients_clients_component__WEBPACK_IMPORTED_MODULE_8__["ClientsComponent"] }
+    { path: 'clients', component: _components_clients_clients_component__WEBPACK_IMPORTED_MODULE_8__["ClientsComponent"] },
+    { path: 'work', component: _components_work_work_component__WEBPACK_IMPORTED_MODULE_9__["WorkComponent"] } // TODO: temporary page, delete after content creation
 ];
 var appRoutes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -1284,23 +1441,18 @@ var ClientService = /** @class */ (function () {
         this.http = http;
     }
     ClientService.prototype.getClients = function () {
-        // return this.http.get<Client[]>('https://test-c9485.firebaseio.com/clients.json')
-        return this.http.get('./assets/db/clients.json')
+        return this.http.get('https://test-c9485.firebaseio.com/clients.json')
             .catch(function (error) {
             return rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"].throw('It\'s an error here. Call your admin');
         });
     };
-    ClientService.prototype.addClient = function (client) {
+    ClientService.prototype.refreshClient = function (clients) {
         var httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
                 'Content-Type': 'application/json'
             })
         };
-        // return this.http.post('https://test-c9485.firebaseio.com/clients.json', client);
-        return this.http.post('assets/db/clients.json', client, httpOptions); // TODO: doesn't work, can't find path
-    };
-    ClientService.prototype.editClient = function (client) {
-        return this.http.put('https://test-c9485.firebaseio.com/clients.json', client);
+        return this.http.put('https://test-c9485.firebaseio.com/clients.json', clients);
     };
     ClientService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -1346,36 +1498,17 @@ var EmployeeService = /** @class */ (function () {
     }
     EmployeeService.prototype.getEmployees = function () {
         return this.http.get('https://test-c9485.firebaseio.com/employees.json')
-            .map(function (res) {
-            for (var _i = 0, res_1 = res; _i < res_1.length; _i++) {
-                var employee = res_1[_i];
-                switch (employee.role) {
-                    case 1:
-                        employee.role = 'Админ';
-                        break;
-                    case 2:
-                        employee.role = 'Доктор';
-                        break;
-                    default:
-                        employee.role = 'Определите роль';
-                }
-                employee.phone = employee.phone.toString().split('');
-                employee.phone.splice(2, 0, ' ');
-                employee.phone.splice(6, 0, ' ');
-                employee.phone.splice(9, 0, ' ');
-                employee.phone = employee.phone.join('');
-            }
-            return res;
-        })
             .catch(function (error) {
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].throw('It\'s an error here. Call your admin');
         });
     };
-    EmployeeService.prototype.addEmployee = function (employee) {
-        return this.http.post('https://test-c9485.firebaseio.com/employees.json', employee);
-    };
-    EmployeeService.prototype.getUsers = function () {
-        return this.http.get('http://localhost:8080/user');
+    EmployeeService.prototype.refreshEmployee = function (employees) {
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+                'Content-Type': 'application/json'
+            })
+        };
+        return this.http.put('https://test-c9485.firebaseio.com/employees.json', employees);
     };
     EmployeeService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
