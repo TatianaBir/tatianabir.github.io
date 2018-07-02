@@ -3090,7 +3090,7 @@ var User = /** @class */ (function () {
             // inputGender comes from sugnup form as a string '0' or '1'
             this._gender = (typeof inputGender === 'string') ?
                 parseInt(inputGender, 10) : inputGender;
-            this.photoURL = this.photoURL || 'assets/img/' +
+            this.photoURL = 'assets/img/' +
                 (this._gender === __WEBPACK_IMPORTED_MODULE_0__enums_gender__["a" /* Gender */].male.valueOf() ? 'man' : 'woman') + '.jpg';
             this.calculateKPCF();
         },
