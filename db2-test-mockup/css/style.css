@@ -1,0 +1,302 @@
+::-webkit-scrollbar {
+  width: 8px;
+  margin-right: 5px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: rgba(56, 68, 99, 0.05); }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(19, 66, 189, 0.1);
+  border-radius: 10px; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(19, 66, 189, 0.2); }
+
+::-webkit-scrollbar-button {
+  display: none; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: #E5E5E5;
+  color: #000;
+  font-family: 'Roboto', sans-serif; }
+
+main {
+  margin: 20px auto;
+  width: 1024px;
+  display: flex; }
+  main .sidebar {
+    padding: 18px 0;
+    background-color: #01134e;
+    display: flex;
+    flex-direction: column; }
+    main .sidebar img {
+      width: 35px;
+      margin-bottom: 58px;
+      align-self: center; }
+    main .sidebar .sidebar-item {
+      margin-bottom: 20px;
+      padding: 14px 30px;
+      position: relative; }
+      main .sidebar .sidebar-item span {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        padding: 0 2px;
+        height: 100%;
+        background-color: inherit; }
+      main .sidebar .sidebar-item i {
+        font-size: 20px;
+        color: #8089a6; }
+    main .sidebar .sidebar-item.active span {
+      background-color: #0ad69c; }
+    main .sidebar .sidebar-item.active i {
+      color: #fff; }
+    main .sidebar .counter::before {
+      content: "1";
+      width: 19px;
+      height: 19px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 19px;
+      letter-spacing: 0.28px;
+      font-weight: bold;
+      border-radius: 50%;
+      background-color: #2a74db;
+      color: #fff;
+      position: absolute;
+      top: 7px;
+      right: 20px; }
+  main .dialog-block {
+    width: 100%;
+    right: 0; }
+    main .dialog-block .content-head {
+      width: 100%;
+      background-color: #fff;
+      border-bottom: 1px solid #F5F6F9;
+      display: flex;
+      justify-content: space-between; }
+      main .dialog-block .content-head div {
+        display: flex;
+        letter-spacing: 0.68px;
+        font-size: 13px;
+        line-height: 14px;
+        margin: 22px 40px 16px; }
+        main .dialog-block .content-head div i {
+          margin: 3px 8px 0; }
+      main .dialog-block .content-head .path i {
+        color: #0ad69c;
+        margin-left: 14px;
+        margin-right: 14px; }
+      main .dialog-block .content-head .user img {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        margin-right: 9px; }
+      main .dialog-block .content-head .user p {
+        line-height: 21px; }
+      main .dialog-block .content-head .user i {
+        margin-top: 5px; }
+    main .dialog-block .content {
+      background-color: #f7f9fc;
+      width: 100%;
+      padding: 44px 0 105px; }
+      main .dialog-block .content .block {
+        max-height: 560px;
+        margin: 0 auto;
+        width: 90%;
+        display: flex;
+        background-color: #fff;
+        box-shadow: 0px 0px 30px rgba(153, 163, 174, 0.06);
+        border-radius: 4px; }
+        main .dialog-block .content .block .dialog-list {
+          min-width: 300px;
+          min-height: 550px;
+          border-right: 1px solid #F5F6F9;
+          background-color: #f7f9fc;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column; }
+          main .dialog-block .content .block .dialog-list .list-item {
+            width: 100%;
+            position: relative;
+            padding: 20px;
+            display: flex;
+            box-sizing: border-box; }
+            main .dialog-block .content .block .dialog-list .list-item .image {
+              background: url("../assets/miranda.png") 50% 100% no-repeat;
+              padding: 0 25px;
+              margin-right: 14px;
+              height: 50.7px;
+              width: 50px;
+              background-size: cover;
+              border-radius: 50%; }
+            main .dialog-block .content .block .dialog-list .list-item .johny {
+              background-image: url("../assets/johny.png"); }
+            main .dialog-block .content .block .dialog-list .list-item .michael {
+              background-image: url("../assets/michael.png"); }
+            main .dialog-block .content .block .dialog-list .list-item .stacey2 {
+              background-image: url("../assets/stacey2.png"); }
+            main .dialog-block .content .block .dialog-list .list-item .stacey {
+              background-image: url("../assets/stacey.png"); }
+            main .dialog-block .content .block .dialog-list .list-item .barry {
+              background-image: url("../assets/barry.png"); }
+            main .dialog-block .content .block .dialog-list .list-item .user-field {
+              width: 200px; }
+              main .dialog-block .content .block .dialog-list .list-item .user-field .user-name {
+                font-family: 'Exo 2', sans-serif;
+                font-size: 16px;
+                line-height: 19px;
+                letter-spacing: 0.57px;
+                font-weight: 500;
+                margin-bottom: 5px;
+                display: inline; }
+                main .dialog-block .content .block .dialog-list .list-item .user-field .user-name::after {
+                  content: "";
+                  padding: 3px;
+                  border-radius: 50%;
+                  position: absolute; }
+              main .dialog-block .content .block .dialog-list .list-item .user-field .user-name.online::after {
+                background-color: #0ad69c; }
+              main .dialog-block .content .block .dialog-list .list-item .user-field i {
+                font-size: 12px;
+                color: #8089a6;
+                margin-left: 10px;
+                display: none; }
+              main .dialog-block .content .block .dialog-list .list-item .user-field p.mute ~ i {
+                display: inline-block; }
+              main .dialog-block .content .block .dialog-list .list-item .user-field .user-text {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.4); }
+            main .dialog-block .content .block .dialog-list .list-item .time {
+              position: absolute;
+              right: 7px;
+              top: 10px;
+              font-size: 12px;
+              color: rgba(0, 0, 0, 0.4); }
+          main .dialog-block .content .block .dialog-list .list-item.active {
+            background: #fff;
+            box-shadow: 0px 5px 5px rgba(190, 200, 212, 0.2), 0px -5px 5px rgba(224, 224, 224, 0.15); }
+        main .dialog-block .content .block .message-fild {
+          width: 100%;
+          background-color: #fff;
+          position: relative;
+          padding-bottom: 60px; }
+          main .dialog-block .content .block .message-fild input {
+            border: none;
+            font-size: 14px;
+            letter-spacing: 0.5px; }
+            main .dialog-block .content .block .message-fild input::placeholder {
+              font-size: 14px;
+              letter-spacing: 0.5px;
+              color: rgba(0, 0, 0, 0.2); }
+            main .dialog-block .content .block .message-fild input:focus {
+              outline: none; }
+          main .dialog-block .content .block .message-fild .message-fild-header {
+            padding: 17px;
+            border-bottom: 1px solid #F5F6F9; }
+            main .dialog-block .content .block .message-fild .message-fild-header i {
+              color: #DADADA;
+              margin-right: 20px; }
+          main .dialog-block .content .block .message-fild .message-fild-content {
+            max-height: 435px;
+            padding: 0 30px 0 20px;
+            overflow-y: auto;
+            box-sizing: border-box;
+            width: 100%; }
+            main .dialog-block .content .block .message-fild .message-fild-content .date-info {
+              text-align: center;
+              margin-bottom: 90px;
+              font-size: 14px;
+              letter-spacing: 0.5px;
+              color: rgba(0, 0, 0, 0.4); }
+            main .dialog-block .content .block .message-fild .message-fild-content .incomming-message {
+              max-width: 70%;
+              margin-top: 20px;
+              display: flex;
+              align-items: flex-end; }
+              main .dialog-block .content .block .message-fild .message-fild-content .incomming-message .avatar {
+                background: url("../assets/stacey.png") 50% 100% no-repeat;
+                margin-right: 14px;
+                height: 36px;
+                min-width: 36px;
+                background-size: cover;
+                border-radius: 50%; }
+              main .dialog-block .content .block .message-fild .message-fild-content .incomming-message .message-text::after {
+                display: none; }
+          main .dialog-block .content .block .message-fild .outgoing-message {
+            margin-top: 20px;
+            margin-left: 40%; }
+            main .dialog-block .content .block .message-fild .outgoing-message .message-text::before {
+              display: none; }
+          main .dialog-block .content .block .message-fild .message-text {
+            background-color: #f7f9fc;
+            border-radius: 5px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-end;
+            position: relative; }
+            main .dialog-block .content .block .message-fild .message-text::before {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: -15px;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 0 15px 15px 15px;
+              border-color: transparent transparent #f7f9fc transparent; }
+            main .dialog-block .content .block .message-fild .message-text::after {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              right: -15px;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 0 15px 15px 15px;
+              border-color: transparent transparent #f7f9fc transparent; }
+            main .dialog-block .content .block .message-fild .message-text p {
+              font-size: 14px;
+              line-height: 20px;
+              margin-right: 25px; }
+            main .dialog-block .content .block .message-fild .message-text .message-time {
+              font-size: 12px;
+              letter-spacing: 0.4px;
+              color: rgba(0, 0, 0, 0.4); }
+          main .dialog-block .content .block .message-fild .message-fild-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0px 0px 20px rgba(153, 163, 174, 0.146541);
+            z-index: 1; }
+            main .dialog-block .content .block .message-fild .message-fild-footer input {
+              min-width: 60%;
+              margin-left: 30px; }
+            main .dialog-block .content .block .message-fild .message-fild-footer .footer-button {
+              color: #DADADA; }
+              main .dialog-block .content .block .message-fild .message-fild-footer .footer-button i {
+                margin-right: 20px;
+                font-size: 20px; }
+              main .dialog-block .content .block .message-fild .message-fild-footer .footer-button i:last-of-type {
+                color: #0ad69c;
+                padding: 7px;
+                box-shadow: 0px 0px 15px rgba(153, 163, 174, 0.259256);
+                border-radius: 7px; }
+
+/*# sourceMappingURL=style.css.map */
