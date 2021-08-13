@@ -1,0 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
+/* You can add global styles to this file, and also import other style files */
+.code-block > p.code-title {
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.code-block > p.code-title + p.code-title {
+  margin: 0;
+}
+
+/*# sourceMappingURL=styles.css.map*/
