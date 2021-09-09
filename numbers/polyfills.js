@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/Tatiana/Desktop/work/tatianabir.github.io/numbers/src/polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! /Users/Tatiana/Desktop/projects/numbers/src/polyfills.ts */"hN/g");
 
 
 /***/ }),
